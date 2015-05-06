@@ -1,7 +1,9 @@
 package com.nitin.challenge.terminal.main;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -77,6 +79,58 @@ public class ShoppingTerminalTest {
 		
 		
 		assertEquals(new Double(15.40), terminal.calculateTotal());
+		
+	}
+	
+	@Test
+	public void testSample4() throws InvalidDiscountException, InvalidProductException {
+		terminal.setDiscounts(null);
+		terminal.setProductPrices(Arrays.asList(getDefaultProducts()));
+		
+		terminal.scan("A");
+		terminal.scan("B");
+		terminal.scan("C");
+		terminal.scan("D");
+		
+		
+		assertEquals(new Double(15.40), terminal.calculateTotal());
+		
+	}
+	
+	
+	@Test
+	public void testSample5() throws InvalidDiscountException, InvalidProductException {
+		List<Discount> discounts = new ArrayList<Discount>();
+		discounts.add(new VolumePriceDiscount("A", 1, 1.0));
+		discounts.add(new VolumePriceDiscount("B", 1, 1.0));
+		discounts.add(new VolumePriceDiscount("C", 1, 1.0));
+		discounts.add(new VolumePriceDiscount("D", 1, 1.0));
+		
+		terminal.setDiscounts(discounts);
+		terminal.setProductPrices(Arrays.asList(getDefaultProducts()));
+		
+		terminal.scan("A");
+		terminal.scan("B");
+		terminal.scan("C");
+		terminal.scan("D");
+		
+		
+		assertEquals(new Double(4.0), terminal.calculateTotal());
+		
+	}
+
+	@Test
+	public void testSample6() throws InvalidDiscountException, InvalidProductException {
+		List<Discount> discounts = new ArrayList<Discount>();
+		discounts.add(new VolumePriceDiscount("A", 1, 1.0));
+		discounts.add(new VolumePriceDiscount("B", 1, 1.0));
+		discounts.add(new VolumePriceDiscount("C", 1, 1.0));
+		discounts.add(new VolumePriceDiscount("D", 1, 1.0));
+		
+		terminal.setDiscounts(discounts);
+		terminal.setProductPrices(Arrays.asList(getDefaultProducts()));
+		
+		assertEquals(new Double(0.0), terminal.calculateTotal());
 		
 	}
 	

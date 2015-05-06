@@ -11,6 +11,8 @@ import com.nitin.challenge.terminal.exceptions.InvalidProductException;
 /**
  * Driver program that just runs through the sample test cases
  * 
+ * Looks at the Unit tests for more test cases
+ * 
  * @author nitin
  *
  */
